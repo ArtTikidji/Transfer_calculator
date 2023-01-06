@@ -55,4 +55,14 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    
+
+    private fun calculatePerformance(
+        ricoRate: Double,
+        uniRate: Double,
+        uniCommission: Double = 0.0
+    ): Double{
+        return try {ricoRate / (uniRate + uniCommission)} catch (e: ArithmeticException) {0.0}
+    }
 }
