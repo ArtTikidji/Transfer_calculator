@@ -10,156 +10,160 @@
         android:id="@+id/linear_layout_calculation_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_calculate_ratios"
         android:padding="10dp"
-        android:baselineAligned="false">
+        app:layout_constraintBottom_toTopOf="@id/button_calculate_ratios"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="USD"
-                android:layout_weight="1"/>
+                android:text="USD" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="EURO"
-                android:layout_weight="1"/>
+                android:text="EURO" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="GEL"
-                android:layout_weight="1"/>
+                android:text="GEL" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unistream Ratio"/>
+                android:text="Unistream Ratio" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_usd_uni_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_euro_uni_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_gel_uni_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rico Ratio"
-                android:minWidth="30dp"/>
+                android:minWidth="30dp"
+                android:text="Rico Ratio" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_usd_rico_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_euro_rico_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_gel_rico_ratio"
+                android:id="@+id/text_gel_rico_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
                 android:layout_weight="1"
-                android:minWidth="30dp"/>
+                android:editable="false"
+                android:inputType="none"
+                android:minWidth="30dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Final Ratio"/>
+                android:text="Final Ratio" />
 
             <TextView
+                android:id="@+id/text_usd_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Ratio USD"
-                android:layout_weight="1"/>
+                android:text="Ratio USD" />
 
             <TextView
+                android:id="@+id/text_euro_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Ratio EURO"
-                android:layout_weight="1"/>
+                android:text="Ratio EURO" />
 
             <TextView
+                android:id="@+id/text_gel_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Ratio GEL"
-                android:layout_weight="1"/>
+                android:text="Ratio GEL" />
         </LinearLayout>
 
     </LinearLayout>
@@ -168,10 +172,10 @@
         android:id="@+id/button_calculate_ratios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linear_layout_calculation_table"
-        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        android:text="Calculate"
         app:layout_constraintBottom_toTopOf="@id/button_first"
-        android:text="Calculate"/>
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_calculation_table" />
 
 
     <Button
