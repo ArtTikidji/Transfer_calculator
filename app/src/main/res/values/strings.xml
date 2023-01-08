@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">Transfer_calculator</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label">Transfers efficiency calculator</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- Strings for calculations table fill-->
+    <string name="usd_row_name">USD</string>
+    <string name="euro_row_name">EURO</string>
+    <string name="gel_row_name">GEL</string>
+    <string name="unistream_column_name">Unistram ratio</string>
+    <string name="rico_column_name">Rico ratio</string>
+    <string name="result_column_name">Efficiency ratio</string>
+
+    <string name="calculate_button_txt">Calculate</string>
+
 </resources>

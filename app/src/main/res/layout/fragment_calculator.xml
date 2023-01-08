@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".CalculatorFragment">
 
     <LinearLayout
         android:id="@+id/linear_layout_calculation_table"
@@ -34,21 +34,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="USD" />
+                android:text="@string/usd_row_name" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="EURO" />
+                android:text="@string/euro_row_name" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="GEL" />
+                android:text="@string/gel_row_name" />
 
         </LinearLayout>
 
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Unistream Ratio" />
+                android:text="@string/unistream_column_name" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_usd_uni_ratio"
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="30dp"
-                android:text="Rico Ratio" />
+                android:text="@string/rico_column_name" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_usd_rico_ratio"
@@ -139,31 +139,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Final Ratio" />
+                android:text="@string/result_column_name" />
 
             <TextView
                 android:id="@+id/text_usd_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Ratio USD" />
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/text_euro_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Ratio EURO" />
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/text_gel_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Ratio GEL" />
+                android:gravity="center"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -172,21 +169,11 @@
         android:id="@+id/button_calculate_ratios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:text="@string/calculate_button_txt"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/linear_layout_calculation_table" />
 
-
-    <Button
-        android:id="@+id/button_first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_calculate_ratios" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_right"
