@@ -29,8 +29,8 @@ class MainViewModel : ViewModel() {
     }
 
     fun calculateRatios() {
-        usdRatio = calculatePerformance(usdUnistream, usdRico)
-        euroRatio = calculatePerformance(euroUnistream, euroRico)
-        gelRatio = calculatePerformance(gelUnistream, gelRico)
+        usdRatio = calculatePerformance(usdRico, usdUnistream)
+        euroRatio = calculatePerformance(euroRico, euroUnistream)
+        gelRatio = calculatePerformance(gelRico, gelUnistream)
     }
 }
