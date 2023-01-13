@@ -1,36 +1,51 @@
 package com.study.transfer_calculator
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    var usdUnistream: Double = 0.0
-    var usdRico: Double = 0.0
-    var usdRatio: Double = 0.0
+    val tableLiveData = MutableLiveData<TableRations>(TableRations())
 
-    var euroUnistream: Double = 0.0
-    var euroRico: Double = 0.0
-    var euroRatio: Double = 0.0
+    fun updateLivedata(newValue: CharSequence, modificationPosition: String) {
+        val parsedValue = newValue.toDouble()
+        when (modificationPosition) {
+            "usdUni" -> tableLiveData.value = tableLiveData.value!!.copy(
+                usdRatios = tableLiveData.value!!.usdRatios.copy(unistreamRatio = parsedValue)
+            )
 
-    var gelUnistream: Double = 0.0
-    var gelRico: Double = 1.0
-    var gelRatio: Double = 0.0
+            "usdRico" -> tableLiveData.value = tableLiveData.value!!.copy(
+                usdRatios = tableLiveData.value!!.usdRatios.copy(ricoRatio = parsedValue)
+            )
 
-    fun calculatePerformance(
-        ricoRate: Double,
-        uniRate: Double,
-        uniCommission: Double = 0.0
-    ): Double {
-        return try {
-            ricoRate / (uniRate + uniCommission)
-        } catch (e: ArithmeticException) {
-            0.0
+            "euroUni" -> tableLiveData.value = tableLiveData.value!!.copy(
+                euroRatios = tableLiveData.value!!.euroRatios.copy(unistreamRatio = parsedValue)
+            )
+
+            "euroRico" -> tableLiveData.value = tableLiveData.value!!.copy(
+                euroRatios = tableLiveData.value!!.euroRatios.copy(ricoRatio = parsedValue)
+            )
+
+            "gelUni" -> tableLiveData.value = tableLiveData.value!!.copy(
+                gelRatios = tableLiveData.value!!.gelRatios.copy(unistreamRatio = parsedValue)
+            )
+
+            "gelRico" -> tableLiveData.value = tableLiveData.value!!.copy(
+                gelRatios = tableLiveData.value!!.gelRatios.copy(ricoRatio = parsedValue)
+            )
         }
     }
 
-    fun calculateRatios() {
-        usdRatio = calculatePerformance(usdRico, usdUnistream)
-        euroRatio = calculatePerformance(euroRico, euroUnistream)
-        gelRatio = calculatePerformance(gelRico, gelUnistream)
-    }
+    fun calculatePerformance(currencyRatio: CurrancyRatios): Double =
+        currencyRatio.ricoRatio / (currencyRatio.unistreamRatio + currencyRatio.unistreamCommission)
+
+
+    fun calculateRatios(): EfficiencyRatios = EfficiencyRatios(
+        usdRatio = calculatePerformance(tableLiveData.value!!.usdRatios),
+        euroRatio = calculatePerformance(tableLiveData.value!!.euroRatios),
+        gelRatio = calculatePerformance(tableLiveData.value!!.gelRatios)
+    )
+
+    fun CharSequence.toDouble() = toString().toDoubleOrNull() ?: 0.0
+
 }

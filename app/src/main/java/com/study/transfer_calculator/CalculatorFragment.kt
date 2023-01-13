@@ -1,13 +1,13 @@
 package com.study.transfer_calculator
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.study.transfer_calculator.databinding.FragmentCalculatorBinding
 
 /**
@@ -21,6 +21,13 @@ class CalculatorFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    val tableObserver = Observer<TableRations> {
+        val newRations: EfficiencyRatios = viewModel.calculateRatios()
+        binding.textUsdRatio.text = "%.4f".format(newRations.usdRatio)
+        binding.textEuroRatio.text = "%.4f".format(newRations.euroRatio)
+        binding.textGelRatio.text = "%.4f".format(newRations.gelRatio)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,57 +39,47 @@ class CalculatorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.tableLiveData.observe(viewLifecycleOwner, tableObserver)
 
         initTableFields()
 
-        binding.buttonCalculateRatios.setOnClickListener {
-            viewModel.calculateRatios()
-            binding.textUsdRatio.text = "%.4f".format(viewModel.usdRatio)
-            binding.textEuroRatio.text = "%.4f".format(viewModel.euroRatio)
-            binding.textGelRatio.text = "%.4f".format(viewModel.gelRatio)
-        }
     }
 
     private fun initTableFields() {
-        binding.textInputUsdUniRatio.setText(viewModel.usdUnistream.toString())
-        binding.textInputUsdRicoRatio.setText(viewModel.usdRico.toString())
+        val currentRations = viewModel.tableLiveData.value ?: return
+        binding.textInputUsdUniRatio.setText("${currentRations.usdRatios.unistreamRatio}")
+        binding.textInputUsdRicoRatio.setText("${currentRations.usdRatios.ricoRatio}")
 
-        binding.textInputEuroUniRatio.setText(viewModel.euroUnistream.toString())
-        binding.textInputEuroRicoRatio.setText(viewModel.euroRico.toString())
+        binding.textInputEuroUniRatio.setText("${currentRations.euroRatios.unistreamRatio}")
+        binding.textInputEuroRicoRatio.setText("${currentRations.euroRatios.ricoRatio}")
 
-        binding.textInputGelUniRatio.setText(viewModel.gelUnistream.toString())
-        binding.textGelRicoRatio.setText(viewModel.gelRico.toString())
+        binding.textInputGelUniRatio.setText("${currentRations.gelRatios.unistreamRatio}")
+        binding.textGelRicoRatio.setText("${currentRations.gelRatios.ricoRatio}")
 
-        binding.textInputUsdUniRatio.doAfterTextChanged {
-            viewModel.usdUnistream = dataDoubleFieldExtractor(it)
+        binding.textInputUsdUniRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
+            viewModel.updateLivedata(s ?: "0.0", "usdUni")
         }
 
-        binding.textInputUsdRicoRatio.doAfterTextChanged {
-            viewModel.usdRico = dataDoubleFieldExtractor(it)
+        binding.textInputUsdRicoRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
+            viewModel.updateLivedata(s ?: "0.0", "usdRico")
         }
 
-        binding.textInputEuroUniRatio.doAfterTextChanged {
-            viewModel.euroUnistream = dataDoubleFieldExtractor(it)
+        binding.textInputEuroUniRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
+            viewModel.updateLivedata(s ?: "0.0", "euroUni")
         }
 
-        binding.textInputEuroRicoRatio.doAfterTextChanged {
-            viewModel.euroRico = dataDoubleFieldExtractor(it)
+        binding.textInputEuroRicoRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
+            viewModel.updateLivedata(s ?: "0.0", "euroRico")
         }
 
-        binding.textInputGelUniRatio.doAfterTextChanged {
-            viewModel.gelUnistream = dataDoubleFieldExtractor(it)
-        }
-    }
-
-    private fun dataDoubleFieldExtractor(text: Editable?): Double {
-        return try {
-            (text ?: "0.0").toString().toDouble()
-        } catch (e: java.lang.NumberFormatException) {
-            0.0
+        binding.textInputGelUniRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
+            viewModel.updateLivedata(s ?: "0.0", "gelUni")
         }
     }
 
     override fun onDestroyView() {
+        viewModel.tableLiveData.removeObserver(tableObserver)
+
         super.onDestroyView()
         _binding = null
     }
