@@ -6,27 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".CalculatorFragment">
 
-    <LinearLayout
-        android:id="@+id/linear_layout_calculation_table"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
+        <TableRow>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:layout_weight="1"
+                android:gravity="center"
                 android:visibility="invisible" />
 
             <TextView
@@ -34,8 +27,58 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="@string/unistream_column_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/rico_column_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/result_column_name" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/usd_row_name" />
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_usd_uni_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_usd_rico_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
+
+            <TextView
+                android:id="@+id/text_usd_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </TableRow>
+
+        <TableRow>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,71 +86,12 @@
                 android:gravity="center"
                 android:text="@string/euro_row_name" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/gel_row_name" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/unistream_column_name" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_usd_uni_ratio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:minWidth="30dp" />
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_euro_uni_ratio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_gel_uni_ratio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:minWidth="30dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="30dp"
-                android:text="@string/rico_column_name" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_usd_rico_ratio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:inputType="numberDecimal"
                 android:minWidth="30dp" />
 
@@ -116,37 +100,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:inputType="numberDecimal"
                 android:minWidth="30dp" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_gel_rico_ratio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:editable="false"
-                android:inputType="none"
-                android:minWidth="30dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/result_column_name" />
-
-            <TextView
-                android:id="@+id/text_usd_ratio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center" />
 
             <TextView
                 android:id="@+id/text_euro_ratio"
@@ -154,6 +110,34 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/gel_row_name" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_gel_uni_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:minWidth="30dp" />
+
+            <TextView
+                android:id="@+id/text_gel_rico_ratio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:editable="false"
+                android:inputType="none"
+                android:minWidth="30dp" />
 
             <TextView
                 android:id="@+id/text_gel_ratio"
@@ -161,16 +145,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96" />
-
+        </TableRow>
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
