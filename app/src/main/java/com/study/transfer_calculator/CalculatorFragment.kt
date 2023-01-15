@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.google.android.material.textfield.TextInputEditText
 import com.study.transfer_calculator.databinding.FragmentCalculatorBinding
 
 /**
@@ -23,9 +25,9 @@ class CalculatorFragment : Fragment() {
 
     val tableObserver = Observer<TableRations> {
         val newRations: EfficiencyRatios = viewModel.calculateRatios()
-        binding.textUsdRatio.text = "%.4f".format(newRations.usdRatio)
-        binding.textEuroRatio.text = "%.4f".format(newRations.euroRatio)
-        binding.textGelRatio.text = "%.4f".format(newRations.gelRatio)
+        setResultField(binding.textUsdRatio, newRations.usdRatio)
+        setResultField(binding.textEuroRatio, newRations.euroRatio)
+        setResultField(binding.textGelRatio, newRations.gelRatio)
     }
 
     override fun onCreateView(
@@ -47,14 +49,14 @@ class CalculatorFragment : Fragment() {
 
     private fun initTableFields() {
         val currentRations = viewModel.tableLiveData.value ?: return
-        binding.textInputUsdUniRatio.setText("${currentRations.usdRatios.unistreamRatio}")
-        binding.textInputUsdRicoRatio.setText("${currentRations.usdRatios.ricoRatio}")
+        initTableField(binding.textInputUsdUniRatio, currentRations.usdRatios.unistreamRatio)
+        initTableField(binding.textInputUsdRicoRatio, currentRations.usdRatios.ricoRatio)
 
-        binding.textInputEuroUniRatio.setText("${currentRations.euroRatios.unistreamRatio}")
-        binding.textInputEuroRicoRatio.setText("${currentRations.euroRatios.ricoRatio}")
+        initTableField(binding.textInputEuroUniRatio, currentRations.euroRatios.unistreamRatio)
+        initTableField(binding.textInputEuroRicoRatio, currentRations.euroRatios.ricoRatio)
 
-        binding.textInputGelUniRatio.setText("${currentRations.gelRatios.unistreamRatio}")
-        binding.textGelRicoRatio.setText("${currentRations.gelRatios.ricoRatio}")
+        initTableField(binding.textInputGelUniRatio, currentRations.gelRatios.unistreamRatio)
+        binding.textGelRicoRatio.text = "${currentRations.gelRatios.ricoRatio}"
 
         binding.textInputUsdUniRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
             viewModel.updateLivedata(s ?: "0.0", "usdUni")
@@ -75,6 +77,17 @@ class CalculatorFragment : Fragment() {
         binding.textInputGelUniRatio.doOnTextChanged { s: CharSequence?, start: Int, before: Int, count: Int ->
             viewModel.updateLivedata(s ?: "0.0", "gelUni")
         }
+    }
+
+    private fun initTableField(field: TextInputEditText, value: Double) {
+        val valueInString: String = if (value != 0.0) "$value" else ""
+        field.setText(valueInString)
+    }
+
+    private fun setResultField(field: TextView, value: Double) {
+        val isExceptionableValue = value.isFinite() && value != 0.0
+        val strValue = if (isExceptionableValue) "%.4f".format(value) else ""
+        field.text = strValue
     }
 
     override fun onDestroyView() {
