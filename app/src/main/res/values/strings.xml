@@ -7,9 +7,9 @@
     <string name="usd_row_name">USD</string>
     <string name="euro_row_name">EURO</string>
     <string name="gel_row_name">GEL</string>
-    <string name="unistream_column_name">Unistram ratio</string>
+    <string name="unistream_column_name">Unistream\n ratio</string>
     <string name="rico_column_name">Rico ratio</string>
-    <string name="result_column_name">Efficiency ratio</string>
+    <string name="result_column_name">Efficiency\n ratio</string>
 
     <string name="calculate_button_txt">Calculate</string>
 
